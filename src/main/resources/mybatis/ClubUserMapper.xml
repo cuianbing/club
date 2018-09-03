@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.qudasai.mapper.UserMapper">
+	<select id="login" resultType="top.qudasai.vo.User" parameterType="top.qudasai.vo.User">
+		SELECT * FROM club_user WHERE user_name = #{userName} AND user_password =
+		MD5(#{userPassword})
+	</select>
+	
+	<insert id="register" parameterType="top.qudasai.vo.RegisterVo">
+	    INSERT INTO club_user (user_id,user_name,user_password,user_group) 
+	    VALUES(#{user.userId},#{user.userName},MD5(#{user.userPassword}),'3')
+	</insert>
+</mapper>

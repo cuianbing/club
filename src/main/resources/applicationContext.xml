@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+   
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:aop="http://www.springframework.org/schema/aop" 
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd" >
+        
+        
+    <!--自动扫描组件 --> 
+	<context:component-scan base-package="top.qudasai">
+		<context:exclude-filter type="aspectj"
+			expression="top.qudasai.vo.*" />
+	</context:component-scan>
+	
+	<!-- 创建基于类的（CGLIB）代理 -->
+	<aop:aspectj-autoproxy proxy-target-class="true"></aop:aspectj-autoproxy>
+	
+    <!-- 引入db.properties属性文件 --> 
+    <context:property-placeholder location="classpath:db.properties" />
+    
+    <!--定义一个jdbc数据源，创建一个驱动管理数据源的bean -->
+    <bean id="jdbcDataSource"
+        	class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+    	<property name="driverClassName" value="${jdbc.driver}" />
+    	<property name="url" value="${jdbc.url}" />
+    	<property name="username" value="${jdbc.username}" />
+    	<property name="password" value="${jdbc.password}" />
+ 	</bean>
+ 	
+ 	<!-- MyBatis配置 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- 指定数据源 -->
+		<property name="dataSource" ref="jdbcDataSource" />
+		<property name="mapperLocations" value="classpath*:mybatis/*.xml"></property>
+		<property name="configLocation" value="classpath:mybatis.xml" />
+	</bean>
+ 	
+ 	<!-- Mapper动态代理开发   扫描 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<!-- 基本包 -->
+		<property name="basePackage" value="top.qudasai.mapper"/>
+	</bean>
+</beans>

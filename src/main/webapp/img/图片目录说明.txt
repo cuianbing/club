@@ -1,0 +1,6 @@
+activity    首页的活动图片
+login   登录界面的小图标
+news   新闻板块的图片
+scroll  顶部滚动栏的轮播图片
+     index_XXXXX01.jpg   首页顶部
+     news_XXXXX01.jpg   新闻顶部

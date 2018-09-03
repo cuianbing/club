@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="top.qudasai.mapper.ClbumMapper">
+	<select id="findAllClbum" resultType="top.qudasai.vo.Clbum">
+		SELECT * FROM clbum
+	</select>
+	<select id="findClbumByCollageId"
+		parameterType="java.lang.Integer" resultType="top.qudasai.vo.Clbum">
+		SELECT * FROM clbum WHERE collage_id = #{collageId}
+	</select>
+	<select id="findClbumByCollageIdAndAge"
+		parameterType="java.lang.Integer" resultType="top.qudasai.vo.Clbum">
+		SELECT * FROM clbum WHERE collage_id= #{collageId} AND age = #{age}
+	</select>
+</mapper>

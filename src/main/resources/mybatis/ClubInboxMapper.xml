@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="top.qudasai.mapper.InboxMapper" >
+    <select id="findAll" resultType="top.qudasai.vo.ClubInbox">
+        SELECT * FROM club_inbox
+    </select>
+    <select id="findAllInbox" resultType="java.lang.String">
+        SELECT Inbox FROM club_inbox
+    </select>
+</mapper>
