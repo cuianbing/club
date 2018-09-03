@@ -5,6 +5,4 @@
 3. maven 3.2
 4. SSM(spring4.1.3  springMVC  mybatis3.2.7)
 5. mysql5.5
-=======
-# 社团官网
->>>>>>> 2048-09-03 frist@cuianbing
+
